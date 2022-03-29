@@ -1,0 +1,18 @@
+package com.company;
+
+import lombok.Data;
+import lombok.ToString;
+import org.mongodb.morphia.annotations.Embedded;
+import org.mongodb.morphia.annotations.Property;
+
+@Data
+@ToString
+public class InnerEntity {
+
+    @Property("name")
+    private String name;
+
+    @Embedded("my_entity")
+    private MyEntity myEntity;
+
+}
