@@ -19,6 +19,16 @@ public class ReproducerTest extends BottleRocketTest {
         MongoDatabase database = getDatabase();
         database.drop();
         datastore = Morphia.createDatastore(mongo, getDatabase().getName());
+        
+        //problem code
+        InnerEntity  innerEntity = new InnerEntity();
+        Query<InnerEntity> query = datastore.createQuery(InnerEntity.class)
+            .field("_id").equal(new ObjectId("123123"));
+
+        //when InnerEntity-->my_entity-->api_name  is [], 'api_name' will be filtered out in updateOperations 
+    UpdateOperations<InnerEntity> updateOperations = mongoContext.createUpdateOperations(InnerEntity.class)
+            .set("name","yxw" )
+            .set("my_entity", innerEntity.getMyEntity);
     }
 
     @NotNull
