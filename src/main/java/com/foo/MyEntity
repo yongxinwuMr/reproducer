@@ -1,0 +1,14 @@
+package com.company;
+
+import java.util.List;
+
+import lombok.Data;
+import lombok.ToString;
+import org.mongodb.morphia.annotations.Property;
+
+@Data
+@ToString
+public class MyEntity {
+    @Property("api_name")
+    private List<String> apiNames;
+}
